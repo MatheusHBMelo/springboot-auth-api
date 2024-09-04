@@ -17,7 +17,7 @@ public class ProductService {
     }
 
     public List<ProductResponseDTO> getProducts() {
-        return ProductMapper.INSTANCE.toListOfProductResponseDTO(productRepository.findAll());
+        return ProductMapper.INSTANCE.toListOfProductResponseDTO(this.productRepository.findAll());
     }
 
     public void saveProduct(ProductRequestDTO productRequestDTO) {

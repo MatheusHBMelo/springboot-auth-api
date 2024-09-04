@@ -21,7 +21,7 @@ public class ProductController {
 
     @GetMapping
     public ResponseEntity<List<ProductResponseDTO>> getProducts() {
-        return ResponseEntity.ok(productService.getProducts());
+        return ResponseEntity.ok(this.productService.getProducts());
     }
 
     @PostMapping

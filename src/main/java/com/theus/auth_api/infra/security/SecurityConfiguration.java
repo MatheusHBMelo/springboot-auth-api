@@ -11,10 +11,17 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
+    private final TokenFilter tokenFilter;
+
+    public SecurityConfiguration(TokenFilter tokenFilter) {
+        this.tokenFilter = tokenFilter;
+    }
+
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
@@ -26,6 +33,7 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.POST, "/api/v1/products").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
+                .addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 

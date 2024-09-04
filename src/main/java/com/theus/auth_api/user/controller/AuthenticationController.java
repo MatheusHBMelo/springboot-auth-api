@@ -1,5 +1,7 @@
 package com.theus.auth_api.user.controller;
 
+import com.theus.auth_api.infra.security.TokenService;
+import com.theus.auth_api.infra.security.dto.TokenDTO;
 import com.theus.auth_api.user.dto.LoginDTO;
 import com.theus.auth_api.user.dto.RegisterDTO;
 import com.theus.auth_api.user.model.User;
@@ -20,17 +22,22 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthenticationController {
     private final UserRepository userRepository;
     private final AuthenticationManager authenticationManager;
+    private final TokenService tokenService;
 
-    public AuthenticationController(UserRepository userRepository, AuthenticationManager authenticationManager) {
+    public AuthenticationController(UserRepository userRepository, AuthenticationManager authenticationManager, TokenService tokenService) {
         this.userRepository = userRepository;
         this.authenticationManager = authenticationManager;
+        this.tokenService = tokenService;
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Void> login(@RequestBody @Valid LoginDTO loginDTO) {
+    public ResponseEntity<TokenDTO> login(@RequestBody @Valid LoginDTO loginDTO) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(loginDTO.username(), loginDTO.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);
-        return ResponseEntity.ok().build();
+
+        TokenDTO token = new TokenDTO(this.tokenService.generateToken((User) auth.getPrincipal()));
+
+        return ResponseEntity.status(HttpStatus.OK).body(token);
     }
 
     @PostMapping("/register")

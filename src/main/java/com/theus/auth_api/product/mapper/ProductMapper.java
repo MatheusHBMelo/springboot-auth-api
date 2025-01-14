@@ -1,20 +1,17 @@
 package com.theus.auth_api.product.mapper;
 
-import com.theus.auth_api.product.dto.ProductRequestDTO;
-import com.theus.auth_api.product.dto.ProductResponseDTO;
-import com.theus.auth_api.product.model.Product;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.factory.Mappers;
 
-import java.util.List;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 
-@Mapper
+import com.theus.auth_api.product.controllers.dto.ProductRequestDTO;
+import com.theus.auth_api.product.model.Product;
+
+@Mapper(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface ProductMapper {
     ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
 
-    List<ProductResponseDTO> toListOfProductResponseDTO(List<Product> products);
-
-    @Mapping(target = "id", ignore = true)
-    Product toProduct(ProductRequestDTO productRequestDTO);
+    void updateProductFromDto(ProductRequestDTO productDTO, @MappingTarget Product product);
 }

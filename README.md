@@ -15,6 +15,7 @@ O objetivo deste projeto é demonstrar habilidades em desenvolvimento backend mo
   - [Instalação](#instalação)
   - [Executando o Projeto](#executando-o-projeto)
 - [Commits Semânticos](#commits-semânticos)
+- [Endpoints da API](#endpoints-da-api)
 - [Contribuição](#contribuição)
 - [Licença](#licença)
 
@@ -38,21 +39,21 @@ O objetivo deste projeto é demonstrar habilidades em desenvolvimento backend mo
 
 ## **Funcionalidades**
 1. **Gerenciamento de Produtos**
-   - Cadastro, atualização, remoção e recuperação de produtos.
+   - Cadastro, atualização, deleção e recuperação de produtos.
    
 2. **Gerenciamento de usuários**
-   - Cadastro de usuários
-   - Login com autenticação baseada em JWT.
-   - Gerenciamento de perfis de acesso (usuário ou administrador).
+   - Criação de usuários
+   - Login com autenticação baseada em token JWT.
+   - Gerenciamento de perfis (usuário ou administrador).
 
 3. **Segurança**
    - Proteção de endpoints com autenticação e autorização.
    - Controle de acesso baseado em papéis (**ROLE_USER**, **ROLE_ADMIN**).
 
-4. **Documentação da API**
+4. **Documentação da API (Em desenvolvimento)**
    - Documentação automática gerada pelo Springdoc OpenAPI, acessível via Swagger UI.
 
-5. **Testes Automatizados**
+5. **Testes Automatizados (Em desenvolvimento)**
    - Testes unitários para validação das regras de negócio.
    - Testes de integração para endpoints e banco de dados.
 
@@ -125,6 +126,23 @@ Adotamos a convenção de **commits semânticos** para manter o histórico do re
     -   Exemplo: `test: adiciona teste unitário para o serviço de usuários`
 -   **style**: Alterações relacionadas à formatação de código, semântica ou ajustes visuais.
     -   Exemplo: `style: aplica formatação ao código do controller`
+
+## **Endpoints da API**
+
+### Exemplos de Endpoints
+
+#### **Autenticação**
+
+-   `POST /api/v1/auth/register`: Criação de usuários (salva no banco de dados).
+-   `POST /api/v1/auth/login`: Autenticação de usuários (retorna token JWT).
+
+#### **Produtos**
+
+-   `POST /api/v1/products`: Criação de novos produtos.
+-   `GET /api/v1/products`: Consultar todos os produtos cadastrados. 
+-   `GET /api/v1/products/{id}`: Consultar um produto especifico.
+-   `PUT /api/v1/products/{id}`: Atualizar um produto especifico.
+-   `DELETE /api/v1/products/{id}`: Deletar um produto especifico.
 
 ## **Contribuição**
 

@@ -1,6 +1,5 @@
 package com.theus.auth_api.user.model;
 
-import com.theus.auth_api.user.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;

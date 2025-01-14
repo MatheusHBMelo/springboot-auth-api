@@ -9,7 +9,6 @@ import lombok.*;
 @AllArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode(of = "id")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +16,7 @@ public class Product {
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
-    private Double price;
-    @Column(nullable = false)
     private String description;
+    @Column(nullable = false)
+    private Double price;
 }

@@ -1,5 +1,9 @@
 package com.theus.auth_api.product.model;
 
+import java.math.BigDecimal;
+
+import com.theus.auth_api.product.controllers.dto.ProductRequestDTO;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,5 +22,11 @@ public class Product {
     @Column(nullable = false)
     private String description;
     @Column(nullable = false)
-    private Double price;
+    private BigDecimal price;
+
+    public Product(ProductRequestDTO productRequestDTO) {
+        this.name = productRequestDTO.name();
+        this.description = productRequestDTO.description();
+        this.price = productRequestDTO.price();
+    }
 }

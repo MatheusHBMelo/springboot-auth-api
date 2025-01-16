@@ -42,7 +42,7 @@ O objetivo deste projeto é demonstrar habilidades em desenvolvimento backend mo
    - Cadastro, atualização, deleção e recuperação de produtos.
    
 2. **Gerenciamento de usuários**
-   - Criação de usuários
+   - Criação e edição de usuários.
    - Login com autenticação baseada em token JWT.
    - Gerenciamento de perfis (usuário ou administrador).
 
@@ -136,13 +136,17 @@ Adotamos a convenção de **commits semânticos** para manter o histórico do re
 -   `POST /api/v1/auth/register`: Criação de usuários (salva no banco de dados).
 -   `POST /api/v1/auth/login`: Autenticação de usuários (retorna token JWT).
 
-#### **Produtos**
+#### **Produto**
 
 -   `POST /api/v1/products`: Criação de novos produtos.
 -   `GET /api/v1/products`: Consultar todos os produtos cadastrados. 
 -   `GET /api/v1/products/{id}`: Consultar um produto especifico.
 -   `PUT /api/v1/products/{id}`: Atualizar um produto especifico.
 -   `DELETE /api/v1/products/{id}`: Deletar um produto especifico.
+
+#### **Usuário**
+
+-   `PUT /api/v1/user/edit`: Edição de usuário logado.
 
 ## **Contribuição**
 

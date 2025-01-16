@@ -5,6 +5,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.theus.auth_api.user.model.User;
+import com.theus.auth_api.user.service.exceptions.TokenGenerateException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,7 @@ public class TokenService {
                     .withExpiresAt(getExpirationDate())
                     .sign(algorithm);
         } catch (JWTCreationException ex) {
-            throw new RuntimeException("Error while generating token for user: " + user.getUsername(), ex);
+            throw new TokenGenerateException("Error while generating token for user: " + user.getUsername());
         }
     }
 
@@ -44,6 +45,6 @@ public class TokenService {
     }
 
     public Instant getExpirationDate() {
-        return LocalDateTime.now().plusMinutes(5).toInstant(ZoneOffset.of("-03:00"));
+        return LocalDateTime.now().plusMinutes(15).toInstant(ZoneOffset.of("-03:00"));
     }
 }
